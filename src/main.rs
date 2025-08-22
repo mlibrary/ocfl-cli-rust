@@ -1,3 +1,6 @@
+// use std::fs::File;
+// use std::io::{self, BufRead, BufReader};
+
 use clap::Parser;
 
 #[derive(Debug, Parser)]
@@ -31,14 +34,14 @@ struct Args {
 
 fn run(args: Args) -> Result<(), Box<dyn std::error::Error>> {
     for filename in args.files {
-        println!("{}", filename);       
+        println!("{filename}");
     }
     Ok(())
 }
 
 fn main() {
     if let Err(e) = run(Args::parse()) {
-        eprintln!("{}", e);
-        std::process::exit(1);       
+        eprintln!("{e}");
+        std::process::exit(1);
     }
 }
