@@ -29,7 +29,16 @@ struct Args {
     number_nonblank_lines: bool,
 }
 
+fn run(args: Args) -> Result<(), Box<dyn std::error::Error>> {
+    for filename in args.files {
+        println!("{}", filename);       
+    }
+    Ok(())
+}
+
 fn main() {
-    let args = Args::parse();
-    println!("{args:#?}");
+    if let Err(e) = run(Args::parse()) {
+        eprintln!("{}", e);
+        std::process::exit(1);       
+    }
 }
