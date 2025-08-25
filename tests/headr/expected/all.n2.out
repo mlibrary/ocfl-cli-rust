@@ -1,16 +1,16 @@
-==> ./tests/inputs/empty.txt <==
+==> ./tests/headr/inputs/empty.txt <==
 
-==> ./tests/inputs/one.txt <==
+==> ./tests/headr/inputs/one.txt <==
 Öne line, four words.
 
-==> ./tests/inputs/two.txt <==
+==> ./tests/headr/inputs/two.txt <==
 Two lines.
 Four words.
 
-==> ./tests/inputs/three.txt <==
+==> ./tests/headr/inputs/three.txt <==
 Three
 lines,
 
-==> ./tests/inputs/twelve.txt <==
+==> ./tests/headr/inputs/twelve.txt <==
 one
 two
