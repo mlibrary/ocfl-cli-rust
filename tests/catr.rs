@@ -6,10 +6,10 @@ use rand::{distr::Alphanumeric, Rng};
 use std::fs;
 
 const PRG: &str = "catr";
-const EMPTY: &str = "tests/inputs/empty.txt";
-const FOX: &str = "tests/inputs/fox.txt";
-const SPIDERS: &str = "tests/inputs/spiders.txt";
-const BUSTLE: &str = "tests/inputs/the-bustle.txt";
+const EMPTY: &str = "tests/catr/inputs/empty.txt";
+const FOX: &str = "tests/catr/inputs/fox.txt";
+const SPIDERS: &str = "tests/catr/inputs/spiders.txt";
+const BUSTLE: &str = "tests/catr/inputs/the-bustle.txt";
 
 // --------------------------------------------------
 #[test]
@@ -82,7 +82,7 @@ fn run_stdin(input_file: &str, args: &[&str], expected_file: &str) -> Result<()>
 // --------------------------------------------------
 #[test]
 fn bustle_stdin() -> Result<()> {
-    run_stdin(BUSTLE, &["-"], "tests/expected/the-bustle.txt.stdin.out")
+    run_stdin(BUSTLE, &["-"], "tests/catr/expected/the-bustle.txt.stdin.out")
 }
 
 // --------------------------------------------------
@@ -91,7 +91,7 @@ fn bustle_stdin_n() -> Result<()> {
     run_stdin(
         BUSTLE,
         &["-n", "-"],
-        "tests/expected/the-bustle.txt.n.stdin.out",
+        "tests/catr/expected/the-bustle.txt.n.stdin.out",
     )
 }
 
@@ -101,56 +101,56 @@ fn bustle_stdin_b() -> Result<()> {
     run_stdin(
         BUSTLE,
         &["-b", "-"],
-        "tests/expected/the-bustle.txt.b.stdin.out",
+        "tests/catr/expected/the-bustle.txt.b.stdin.out",
     )
 }
 
 // --------------------------------------------------
 #[test]
 fn empty() -> Result<()> {
-    run(&[EMPTY], "tests/expected/empty.txt.out")
+    run(&[EMPTY], "tests/catr/expected/empty.txt.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn empty_n() -> Result<()> {
-    run(&["-n", EMPTY], "tests/expected/empty.txt.n.out")
+    run(&["-n", EMPTY], "tests/catr/expected/empty.txt.n.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn empty_b() -> Result<()> {
-    run(&["-b", EMPTY], "tests/expected/empty.txt.b.out")
+    run(&["-b", EMPTY], "tests/catr/expected/empty.txt.b.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn fox() -> Result<()> {
-    run(&[FOX], "tests/expected/fox.txt.out")
+    run(&[FOX], "tests/catr/expected/fox.txt.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn fox_n() -> Result<()> {
-    run(&["-n", FOX], "tests/expected/fox.txt.n.out")
+    run(&["-n", FOX], "tests/catr/expected/fox.txt.n.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn fox_b() -> Result<()> {
-    run(&["-b", FOX], "tests/expected/fox.txt.b.out")
+    run(&["-b", FOX], "tests/catr/expected/fox.txt.b.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn spiders() -> Result<()> {
-    run(&[SPIDERS], "tests/expected/spiders.txt.out")
+    run(&[SPIDERS], "tests/catr/expected/spiders.txt.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn spiders_n() -> Result<()> {
-    run(&["--number", SPIDERS], "tests/expected/spiders.txt.n.out")
+    run(&["--number", SPIDERS], "tests/catr/expected/spiders.txt.n.out")
 }
 
 // --------------------------------------------------
@@ -158,42 +158,42 @@ fn spiders_n() -> Result<()> {
 fn spiders_b() -> Result<()> {
     run(
         &["--number-nonblank", SPIDERS],
-        "tests/expected/spiders.txt.b.out",
+        "tests/catr/expected/spiders.txt.b.out",
     )
 }
 
 // --------------------------------------------------
 #[test]
 fn bustle() -> Result<()> {
-    run(&[BUSTLE], "tests/expected/the-bustle.txt.out")
+    run(&[BUSTLE], "tests/catr/expected/the-bustle.txt.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn bustle_n() -> Result<()> {
-    run(&["-n", BUSTLE], "tests/expected/the-bustle.txt.n.out")
+    run(&["-n", BUSTLE], "tests/catr/expected/the-bustle.txt.n.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn bustle_b() -> Result<()> {
-    run(&["-b", BUSTLE], "tests/expected/the-bustle.txt.b.out")
+    run(&["-b", BUSTLE], "tests/catr/expected/the-bustle.txt.b.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn all() -> Result<()> {
-    run(&[FOX, SPIDERS, BUSTLE], "tests/expected/all.out")
+    run(&[FOX, SPIDERS, BUSTLE], "tests/catr/expected/all.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn all_n() -> Result<()> {
-    run(&[FOX, SPIDERS, BUSTLE, "-n"], "tests/expected/all.n.out")
+    run(&[FOX, SPIDERS, BUSTLE, "-n"], "tests/catr/expected/all.n.out")
 }
 
 // --------------------------------------------------
 #[test]
 fn all_b() -> Result<()> {
-    run(&[FOX, SPIDERS, BUSTLE, "-b"], "tests/expected/all.b.out")
+    run(&[FOX, SPIDERS, BUSTLE, "-b"], "tests/catr/expected/all.b.out")
 }

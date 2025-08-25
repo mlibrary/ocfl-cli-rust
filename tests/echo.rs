@@ -38,7 +38,7 @@ fn hello1_builder() -> Result<()> {
     run(
         "echo-builder",
         &["Hello there"],
-        "tests/expected/hello1.txt",
+        "tests/echo/expected/hello1.txt",
     )
 }
 
@@ -47,7 +47,7 @@ fn hello2_builder() -> Result<()> {
     run(
         "echo-builder",
         &["Hello", "there"],
-        "tests/expected/hello2.txt",
+        "tests/echo/expected/hello2.txt",
     )
 }
 
@@ -56,7 +56,7 @@ fn hello1_no_newline_builder() -> Result<()> {
     run(
         "echo-builder",
         &["Hello  there", "-n"],
-        "tests/expected/hello1.n.txt",
+        "tests/echo/expected/hello1.n.txt",
     )
 }
 
@@ -65,13 +65,13 @@ fn hello2_no_newline_builder() -> Result<()> {
     run(
         "echo-builder",
         &["-n", "Hello", "there"],
-        "tests/expected/hello2.n.txt",
+        "tests/echo/expected/hello2.n.txt",
     )
 }
 
 #[test]
 fn hello1_derive() -> Result<()> {
-    run("echo-derive", &["Hello there"], "tests/expected/hello1.txt")
+    run("echo-derive", &["Hello there"], "tests/echo/expected/hello1.txt")
 }
 
 #[test]
@@ -79,7 +79,7 @@ fn hello2_derive() -> Result<()> {
     run(
         "echo-derive",
         &["Hello", "there"],
-        "tests/expected/hello2.txt",
+        "tests/echo/expected/hello2.txt",
     )
 }
 
@@ -88,7 +88,7 @@ fn hello1_no_newline_derive() -> Result<()> {
     run(
         "echo-derive",
         &["Hello  there", "-n"],
-        "tests/expected/hello1.n.txt",
+        "tests/echo/expected/hello1.n.txt",
     )
 }
 
@@ -97,6 +97,6 @@ fn hello2_no_newline_derive() -> Result<()> {
     run(
         "echo-derive",
         &["-n", "Hello", "there"],
-        "tests/expected/hello2.n.txt",
+        "tests/echo/expected/hello2.n.txt",
     )
 }
