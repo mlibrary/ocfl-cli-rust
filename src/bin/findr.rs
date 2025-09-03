@@ -1,5 +1,5 @@
 use anyhow::Result;
-use clap::{builder::PossibleValue, ArgAction, Parser, ValueEnum};
+use clap::{ArgAction, Parser, ValueEnum, builder::PossibleValue};
 use regex::Regex;
 use walkdir::{DirEntry, WalkDir};
 
@@ -68,18 +68,18 @@ fn run(args: Args) -> Result<()> {
     let type_filter = |entry: &DirEntry| {
         args.entry_types.is_empty()
             || args.entry_types.iter().any(|entry_type| match entry_type {
-            EntryType::Link => entry.file_type().is_symlink(),
-            EntryType::Dir => entry.file_type().is_dir(),
-            EntryType::File => entry.file_type().is_file(),
-        })
+                EntryType::Link => entry.file_type().is_symlink(),
+                EntryType::Dir => entry.file_type().is_dir(),
+                EntryType::File => entry.file_type().is_file(),
+            })
     };
 
     let name_filter = |entry: &DirEntry| {
         args.names.is_empty()
             || args
-            .names
-            .iter()
-            .any(|re| re.is_match(&entry.file_name().to_string_lossy()))
+                .names
+                .iter()
+                .any(|re| re.is_match(&entry.file_name().to_string_lossy()))
     };
 
     for path in &args.paths {

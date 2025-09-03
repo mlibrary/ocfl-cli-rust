@@ -148,7 +148,7 @@ fn count(mut file: impl BufRead) -> Result<FileInfo> {
 // --------------------------------------------------
 #[cfg(test)]
 mod tests {
-    use super::{count, format_field, FileInfo};
+    use super::{FileInfo, count, format_field};
     use std::io::Cursor;
 
     #[test]

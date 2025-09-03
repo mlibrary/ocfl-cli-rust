@@ -2,7 +2,7 @@ use anyhow::Result;
 use assert_cmd::Command;
 use predicates::prelude::*;
 use pretty_assertions::assert_eq;
-use rand::{distr::Alphanumeric, Rng};
+use rand::{Rng, distr::Alphanumeric};
 use std::{borrow::Cow, fs, path::Path};
 
 const PRG: &str = "findr";
@@ -76,15 +76,13 @@ fn format_file_name(expected_file: &str) -> Cow<str> {
 fn run(args: &[&str], expected_file: &str) -> Result<()> {
     let file = format_file_name(expected_file);
     let contents = fs::read_to_string(file.as_ref())?;
-    let mut expected: Vec<&str> =
-        contents.split('\n').filter(|s| !s.is_empty()).collect();
+    let mut expected: Vec<&str> = contents.split('\n').filter(|s| !s.is_empty()).collect();
     expected.sort();
 
     let cmd = Command::cargo_bin(PRG)?.args(args).assert().success();
     let out = cmd.get_output();
     let stdout = String::from_utf8(out.stdout.clone())?;
-    let mut lines: Vec<&str> =
-        stdout.split('\n').filter(|s| !s.is_empty()).collect();
+    let mut lines: Vec<&str> = stdout.split('\n').filter(|s| !s.is_empty()).collect();
     lines.sort();
 
     assert_eq!(lines, expected);
@@ -107,7 +105,10 @@ fn path_a() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn path_a_b() -> Result<()> {
-    run(&["tests/findr/inputs/a/b"], "tests/findr/expected/path_a_b.txt")
+    run(
+        &["tests/findr/inputs/a/b"],
+        "tests/findr/expected/path_a_b.txt",
+    )
 }
 
 // --------------------------------------------------
@@ -128,7 +129,10 @@ fn path_a_b_d() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn type_f() -> Result<()> {
-    run(&["tests/findr/inputs", "-t", "f"], "tests/findr/expected/type_f.txt")
+    run(
+        &["tests/findr/inputs", "-t", "f"],
+        "tests/findr/expected/type_f.txt",
+    )
 }
 
 // --------------------------------------------------
@@ -162,7 +166,12 @@ fn type_f_path_d() -> Result<()> {
 #[test]
 fn type_f_path_a_b_d() -> Result<()> {
     run(
-        &["tests/findr/inputs/a/b", "tests/findr/inputs/d", "--type", "f"],
+        &[
+            "tests/findr/inputs/a/b",
+            "tests/findr/inputs/d",
+            "--type",
+            "f",
+        ],
         "tests/findr/expected/type_f_path_a_b_d.txt",
     )
 }
@@ -170,7 +179,10 @@ fn type_f_path_a_b_d() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn type_d() -> Result<()> {
-    run(&["tests/findr/inputs", "-t", "d"], "tests/findr/expected/type_d.txt")
+    run(
+        &["tests/findr/inputs", "-t", "d"],
+        "tests/findr/expected/type_d.txt",
+    )
 }
 
 // --------------------------------------------------
@@ -204,7 +216,12 @@ fn type_d_path_d() -> Result<()> {
 #[test]
 fn type_d_path_a_b_d() -> Result<()> {
     run(
-        &["tests/findr/inputs/a/b", "tests/findr/inputs/d", "--type", "d"],
+        &[
+            "tests/findr/inputs/a/b",
+            "tests/findr/inputs/d",
+            "--type",
+            "d",
+        ],
         "tests/findr/expected/type_d_path_a_b_d.txt",
     )
 }
@@ -212,7 +229,10 @@ fn type_d_path_a_b_d() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn type_l() -> Result<()> {
-    run(&["tests/findr/inputs", "-t", "l"], "tests/findr/expected/type_l.txt")
+    run(
+        &["tests/findr/inputs", "-t", "l"],
+        "tests/findr/expected/type_l.txt",
+    )
 }
 
 // --------------------------------------------------
@@ -246,7 +266,12 @@ fn name_csv_mp3() -> Result<()> {
 #[test]
 fn name_txt_path_a_d() -> Result<()> {
     run(
-        &["tests/findr/inputs/a", "tests/findr/inputs/d", "--name", ".*.txt"],
+        &[
+            "tests/findr/inputs/a",
+            "tests/findr/inputs/d",
+            "--name",
+            ".*.txt",
+        ],
         "tests/findr/expected/name_txt_path_a_d.txt",
     )
 }
@@ -254,7 +279,10 @@ fn name_txt_path_a_d() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn name_a() -> Result<()> {
-    run(&["tests/findr/inputs", "-n", "a"], "tests/findr/expected/name_a.txt")
+    run(
+        &["tests/findr/inputs", "-n", "a"],
+        "tests/findr/expected/name_a.txt",
+    )
 }
 
 // --------------------------------------------------
@@ -278,7 +306,10 @@ fn type_d_name_a() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn path_g() -> Result<()> {
-    run(&["tests/findr/inputs/g.csv"], "tests/findr/expected/path_g.txt")
+    run(
+        &["tests/findr/inputs/g.csv"],
+        "tests/findr/expected/path_g.txt",
+    )
 }
 
 // --------------------------------------------------
@@ -303,8 +334,7 @@ fn unreadable_dir() -> Result<()> {
 
     let out = cmd.get_output();
     let stdout = String::from_utf8(out.stdout.clone())?;
-    let lines: Vec<&str> =
-        stdout.split('\n').filter(|s| !s.is_empty()).collect();
+    let lines: Vec<&str> = stdout.split('\n').filter(|s| !s.is_empty()).collect();
 
     assert_eq!(lines.len(), 17);
 

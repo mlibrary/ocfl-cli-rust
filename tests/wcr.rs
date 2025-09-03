@@ -2,7 +2,7 @@ use anyhow::Result;
 use assert_cmd::Command;
 use predicates::prelude::*;
 use pretty_assertions::assert_eq;
-use rand::{distr::Alphanumeric, Rng};
+use rand::{Rng, distr::Alphanumeric};
 use std::fs;
 
 const PRG: &str = "wcr";
@@ -144,27 +144,35 @@ fn atlamal_lines() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn atlamal_words_bytes() -> Result<()> {
-    run(&["-w", "-c", ATLAMAL], "tests/wcr/expected/atlamal.txt.wc.out")
+    run(
+        &["-w", "-c", ATLAMAL],
+        "tests/wcr/expected/atlamal.txt.wc.out",
+    )
 }
 
 // --------------------------------------------------
 #[test]
 fn atlamal_words_lines() -> Result<()> {
-    run(&["-w", "-l", ATLAMAL], "tests/wcr/expected/atlamal.txt.wl.out")
+    run(
+        &["-w", "-l", ATLAMAL],
+        "tests/wcr/expected/atlamal.txt.wl.out",
+    )
 }
 
 // --------------------------------------------------
 #[test]
 fn atlamal_bytes_lines() -> Result<()> {
-    run(&["-l", "-c", ATLAMAL], "tests/wcr/expected/atlamal.txt.cl.out")
+    run(
+        &["-l", "-c", ATLAMAL],
+        "tests/wcr/expected/atlamal.txt.cl.out",
+    )
 }
 
 // --------------------------------------------------
 #[test]
 fn atlamal_stdin() -> Result<()> {
     let input = fs::read_to_string(ATLAMAL)?;
-    let expected =
-        fs::read_to_string("tests/wcr/expected/atlamal.txt.stdin.out")?;
+    let expected = fs::read_to_string("tests/wcr/expected/atlamal.txt.stdin.out")?;
 
     let output = Command::cargo_bin(PRG)?
         .write_stdin(input)
@@ -204,17 +212,26 @@ fn test_all_bytes() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn test_all_words_bytes() -> Result<()> {
-    run(&["-cw", EMPTY, FOX, ATLAMAL], "tests/wcr/expected/all.wc.out")
+    run(
+        &["-cw", EMPTY, FOX, ATLAMAL],
+        "tests/wcr/expected/all.wc.out",
+    )
 }
 
 // --------------------------------------------------
 #[test]
 fn test_all_words_lines() -> Result<()> {
-    run(&["-wl", EMPTY, FOX, ATLAMAL], "tests/wcr/expected/all.wl.out")
+    run(
+        &["-wl", EMPTY, FOX, ATLAMAL],
+        "tests/wcr/expected/all.wl.out",
+    )
 }
 
 // --------------------------------------------------
 #[test]
 fn test_all_bytes_lines() -> Result<()> {
-    run(&["-cl", EMPTY, FOX, ATLAMAL], "tests/wcr/expected/all.cl.out")
+    run(
+        &["-cl", EMPTY, FOX, ATLAMAL],
+        "tests/wcr/expected/all.cl.out",
+    )
 }

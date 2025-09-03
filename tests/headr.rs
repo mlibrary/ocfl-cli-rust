@@ -2,7 +2,7 @@ use anyhow::Result;
 use assert_cmd::Command;
 use predicates::prelude::*;
 use pretty_assertions::assert_eq;
-use rand::{distr::Alphanumeric, Rng};
+use rand::{Rng, distr::Alphanumeric};
 use std::fs::{self, File};
 use std::io::prelude::*;
 
@@ -111,11 +111,7 @@ fn run(args: &[&str], expected_file: &str) -> Result<()> {
 }
 
 // --------------------------------------------------
-fn run_stdin(
-    args: &[&str],
-    input_file: &str,
-    expected_file: &str,
-) -> Result<()> {
+fn run_stdin(args: &[&str], input_file: &str, expected_file: &str) -> Result<()> {
     // Extra work here due to lossy UTF
     let mut file = File::open(expected_file)?;
     let mut buffer = Vec::new();
@@ -335,22 +331,34 @@ fn twelve() -> Result<()> {
 
 #[test]
 fn twelve_n2() -> Result<()> {
-    run(&[TWELVE, "-n", "2"], "tests/headr/expected/twelve.txt.n2.out")
+    run(
+        &[TWELVE, "-n", "2"],
+        "tests/headr/expected/twelve.txt.n2.out",
+    )
 }
 
 #[test]
 fn twelve_n4() -> Result<()> {
-    run(&[TWELVE, "-n", "4"], "tests/headr/expected/twelve.txt.n4.out")
+    run(
+        &[TWELVE, "-n", "4"],
+        "tests/headr/expected/twelve.txt.n4.out",
+    )
 }
 
 #[test]
 fn twelve_c2() -> Result<()> {
-    run(&[TWELVE, "-c", "2"], "tests/headr/expected/twelve.txt.c2.out")
+    run(
+        &[TWELVE, "-c", "2"],
+        "tests/headr/expected/twelve.txt.c2.out",
+    )
 }
 
 #[test]
 fn twelve_c4() -> Result<()> {
-    run(&[TWELVE, "-c", "4"], "tests/headr/expected/twelve.txt.c4.out")
+    run(
+        &[TWELVE, "-c", "4"],
+        "tests/headr/expected/twelve.txt.c4.out",
+    )
 }
 
 #[test]
@@ -360,28 +368,47 @@ fn twelve_stdin() -> Result<()> {
 
 #[test]
 fn twelve_n2_stdin() -> Result<()> {
-    run_stdin(&["-n", "2"], TWELVE, "tests/headr/expected/twelve.txt.n2.out")
+    run_stdin(
+        &["-n", "2"],
+        TWELVE,
+        "tests/headr/expected/twelve.txt.n2.out",
+    )
 }
 
 #[test]
 fn twelve_n4_stdin() -> Result<()> {
-    run_stdin(&["-n", "4"], TWELVE, "tests/headr/expected/twelve.txt.n4.out")
+    run_stdin(
+        &["-n", "4"],
+        TWELVE,
+        "tests/headr/expected/twelve.txt.n4.out",
+    )
 }
 
 #[test]
 fn twelve_c2_stdin() -> Result<()> {
-    run_stdin(&["-c", "2"], TWELVE, "tests/headr/expected/twelve.txt.c2.out")
+    run_stdin(
+        &["-c", "2"],
+        TWELVE,
+        "tests/headr/expected/twelve.txt.c2.out",
+    )
 }
 
 #[test]
 fn twelve_c4_stdin() -> Result<()> {
-    run_stdin(&["-c", "4"], TWELVE, "tests/headr/expected/twelve.txt.c4.out")
+    run_stdin(
+        &["-c", "4"],
+        TWELVE,
+        "tests/headr/expected/twelve.txt.c4.out",
+    )
 }
 
 // --------------------------------------------------
 #[test]
 fn multiple_files() -> Result<()> {
-    run(&[EMPTY, ONE, TWO, THREE, TWELVE], "tests/headr/expected/all.out")
+    run(
+        &[EMPTY, ONE, TWO, THREE, TWELVE],
+        "tests/headr/expected/all.out",
+    )
 }
 
 #[test]

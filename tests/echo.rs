@@ -71,7 +71,11 @@ fn hello2_no_newline_builder() -> Result<()> {
 
 #[test]
 fn hello1_derive() -> Result<()> {
-    run("echo-derive", &["Hello there"], "tests/echo/expected/hello1.txt")
+    run(
+        "echo-derive",
+        &["Hello there"],
+        "tests/echo/expected/hello1.txt",
+    )
 }
 
 #[test]

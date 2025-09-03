@@ -2,7 +2,7 @@ use anyhow::Result;
 use assert_cmd::Command;
 use predicates::prelude::*;
 use pretty_assertions::assert_eq;
-use rand::{distr::Alphanumeric, Rng};
+use rand::{Rng, distr::Alphanumeric};
 use std::fs;
 
 const PRG: &str = "catr";
@@ -82,7 +82,11 @@ fn run_stdin(input_file: &str, args: &[&str], expected_file: &str) -> Result<()>
 // --------------------------------------------------
 #[test]
 fn bustle_stdin() -> Result<()> {
-    run_stdin(BUSTLE, &["-"], "tests/catr/expected/the-bustle.txt.stdin.out")
+    run_stdin(
+        BUSTLE,
+        &["-"],
+        "tests/catr/expected/the-bustle.txt.stdin.out",
+    )
 }
 
 // --------------------------------------------------
@@ -150,7 +154,10 @@ fn spiders() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn spiders_n() -> Result<()> {
-    run(&["--number", SPIDERS], "tests/catr/expected/spiders.txt.n.out")
+    run(
+        &["--number", SPIDERS],
+        "tests/catr/expected/spiders.txt.n.out",
+    )
 }
 
 // --------------------------------------------------
@@ -189,11 +196,17 @@ fn all() -> Result<()> {
 // --------------------------------------------------
 #[test]
 fn all_n() -> Result<()> {
-    run(&[FOX, SPIDERS, BUSTLE, "-n"], "tests/catr/expected/all.n.out")
+    run(
+        &[FOX, SPIDERS, BUSTLE, "-n"],
+        "tests/catr/expected/all.n.out",
+    )
 }
 
 // --------------------------------------------------
 #[test]
 fn all_b() -> Result<()> {
-    run(&[FOX, SPIDERS, BUSTLE, "-b"], "tests/catr/expected/all.b.out")
+    run(
+        &[FOX, SPIDERS, BUSTLE, "-b"],
+        "tests/catr/expected/all.b.out",
+    )
 }
