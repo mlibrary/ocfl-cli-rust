@@ -9,6 +9,7 @@ anyhow = "1.0.99"
 clap = { version = "4.5.45", features = ["derive"] }
 ocfl-lib-rust = { path = "../ocfl-lib-rust" }
 regex = "1.11.2"
+rocfl = { git = "https://github.com/mlibrary/rocfl.git", branch = "umich" }
 walkdir = "2.5.0"
 
 [dev-dependencies]
